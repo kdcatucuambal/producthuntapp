@@ -1,7 +1,7 @@
 import { INewAccount } from "../models/app.interfaces";
 
 export default function validateNewAccount(values: INewAccount) {
-  let errors: any = {};
+  let errors: Partial<INewAccount> = {};
 
   //validare user name
   if (!values.name) {

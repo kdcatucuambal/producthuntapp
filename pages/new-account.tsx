@@ -8,6 +8,7 @@ import { useValidate } from "../hooks/useValidate";
 import { INewAccount } from "../models/app.interfaces";
 import validateNewAccount from "../validate/validateNewAccount";
 const NewAccount = () => {
+  
   const stateInitial: INewAccount = {
     name: "",
     email: "",
@@ -17,7 +18,7 @@ const NewAccount = () => {
   const { values, errors, handleSubmit, handleChange, handleBlur } =
     useValidate(stateInitial, validateNewAccount, createAccount);
 
-  const { name, email, password } = values;
+  const { name, password, email } = values;
 
   function createAccount() {
     console.log("Creating account");
@@ -47,7 +48,7 @@ const NewAccount = () => {
               onBlur={handleBlur}
             />
           </Field>
-          {errors.name && <Error>{errors.name}</Error>}
+          {errors?.name && <Error>{errors.name}</Error>}
           <Field>
             <label htmlFor="email">Email</label>
             <input
@@ -60,7 +61,7 @@ const NewAccount = () => {
               onBlur={handleBlur}
             />
           </Field>
-          {errors.email && <Error>{errors.email}</Error>}
+          {errors?.email && <Error>{errors.email}</Error>}
           <Field>
             <label htmlFor="password">Password</label>
             <input
@@ -73,7 +74,7 @@ const NewAccount = () => {
               onBlur={handleBlur}
             />
           </Field>
-          {errors.password && <Error>{errors.password}</Error>}
+          {errors?.password && <Error>{errors.password}</Error>}
           <InputSubmit type="submit" value="Create account" />
         </Form>
       </>
