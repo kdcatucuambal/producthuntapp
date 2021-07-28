@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const useValidate = (stateInitial: any, validate: any, fn: any) => {
+export const useValidate = (stateInitial: any, validate: any, fn: any) => {
   const [values, setValues] = useState(stateInitial);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const [submitForm, setSubmitForm] = useState(false);
 
   useEffect(() => {
@@ -13,9 +13,9 @@ const useValidate = (stateInitial: any, validate: any, fn: any) => {
       }
       setSubmitForm(false);
     }
-  }, []);
+  }, [errors]);
 
-  //FUnction to ejecute when the user write
+  //Function to ejecute when the user write
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
@@ -29,15 +29,21 @@ const useValidate = (stateInitial: any, validate: any, fn: any) => {
     e.preventDefault();
     const errorsValidate = validate(values);
     setErrors(errorsValidate);
-    setSubmitForm(false);
+    setSubmitForm(true);
   };
+
+  // when realzie event blur
+  const handleBlur = () => {
+    const errorsValidate = validate(values);
+    setErrors(errorsValidate);
+  };
+
   return {
     values,
     errors,
     submitForm,
     handleSubmit,
     handleChange,
+    handleBlur,
   };
 };
-
-export default useValidate;
