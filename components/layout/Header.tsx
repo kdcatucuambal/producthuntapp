@@ -4,7 +4,8 @@ import Link from "next/link";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Button from "./../ui/Button";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { FirebaseContext } from "../../firebase";
 
 declare module "react" {
   interface Attributes {
@@ -33,7 +34,7 @@ const Logo = styled.p`
 `;
 
 const Header = () => {
-  const user = false;
+  const { auth, firebase } = useContext(FirebaseContext);
 
   return (
     <header
@@ -61,16 +62,22 @@ const Header = () => {
             align-items: center;
           `}
         >
-          {user ? (
+          {auth ? (
             <Fragment>
               <p
                 css={css`
                   margin-right: 2rem;
                 `}
               >
-                Hola Kevin
+                Hola {auth.displayName}
               </p>
-              <Button type="button" bgColor={true}>
+              <Button
+                type="button"
+                bgColor={true}
+                onClick={() => {
+                  firebase.logout()
+                }}
+              >
                 Logout
               </Button>
             </Fragment>
