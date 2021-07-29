@@ -7,14 +7,16 @@ function useAuth() {
     useState<firecore.User>(null);
 
   useEffect(() => {
+    console.log("mount");
     const unsuscribe = firebase._auth.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         setUserAuthenticated(user);
       } else {
         setUserAuthenticated(null);
       }
-      return () => unsuscribe();
     });
+    return () => unsuscribe();
   }, []);
 
   return userAuhtenticated;

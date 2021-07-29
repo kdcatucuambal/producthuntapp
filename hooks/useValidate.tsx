@@ -16,7 +16,7 @@ export function useValidate<State>(
     }
   }, [errors]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,

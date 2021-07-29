@@ -1,16 +1,19 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import { ILogin, INewAccount } from "../models/app.interfaces";
 import firebaseConfig from "./config";
 
 class Firebase {
   private auth: app.auth.Auth = null;
+  public db: app.firestore.Firestore;
 
   constructor() {
     if (!app.apps.length) {
       app.initializeApp(firebaseConfig);
     }
     this.auth = app.auth();
+    this.db = app.firestore();
   }
 
   //regiser user

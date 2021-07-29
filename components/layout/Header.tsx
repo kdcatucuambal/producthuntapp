@@ -35,7 +35,7 @@ const Logo = styled.p`
 
 const Header = () => {
   const { auth, firebase } = useContext(FirebaseContext);
-
+  
   return (
     <header
       css={css`
@@ -75,7 +75,7 @@ const Header = () => {
                 type="button"
                 bgColor={true}
                 onClick={() => {
-                  firebase.logout()
+                  firebase.logout();
                 }}
               >
                 Logout
