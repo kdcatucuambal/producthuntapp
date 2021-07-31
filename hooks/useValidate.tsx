@@ -23,7 +23,7 @@ export function useValidate<State>(
     });
   };
 
-  //Function to ejecute when user do to sumbit
+  //Function to execute when user do to submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errorsValidate = validate(values);
@@ -31,7 +31,7 @@ export function useValidate<State>(
     setSubmitForm(true);
   };
 
-  // when realzie event blur
+  // when realize event blur
   const handleBlur = () => {
     const errorsValidate = validate(values);
     setErrors(errorsValidate);

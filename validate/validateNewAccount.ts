@@ -3,12 +3,12 @@ import { INewAccount } from "../models/app.interfaces";
 export default function validateNewAccount(values: INewAccount) {
   let errors: Partial<INewAccount> = {};
 
-  //validare user name
+  // validate user name
   if (!values.name) {
     errors.name = "Name is required";
   }
 
-  //validate email
+  // validate email
   if (!values.email) {
     errors.email = "Name is required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {

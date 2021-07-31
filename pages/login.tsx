@@ -3,9 +3,8 @@ import { css } from "@emotion/react";
 import Router from "next/router";
 import Layout from "../components/layout/Layout";
 import { Field, Form, InputSubmit, Error } from "./../components/ui/Form";
-
+import {  } from "react-firebase-file-uploader";
 import firebase from "../firebase";
-
 //validates
 import { useValidate } from "../hooks/useValidate";
 import { ILogin } from "../models/app.interfaces";
@@ -27,7 +26,7 @@ const Login = () => {
   async function login() {
     try {
       const user = await firebase.login(values);
-      Router.push('/');
+      await Router.push('/');
     } catch (error) {
       console.log(error);
       setError({

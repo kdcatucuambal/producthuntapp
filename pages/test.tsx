@@ -1,19 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const test = () => {
-  return (
-    <div>
-      <h1>Test</h1>
-      <style jsx>
-          {`
-          h1{
-              color: red;
-          }
-          `}
-      </style>
-      <button>Click me please!</button>
-    </div>
-  );
+const Test = () => {
+    return (
+        <div>
+            
+        </div>
+    );
 };
 
-export default test;
+export default Test;

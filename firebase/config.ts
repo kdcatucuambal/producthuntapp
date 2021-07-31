@@ -1,4 +1,4 @@
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyBn5MtYgXbSc1ukcur_aUc5ysBWMZhfNgg",
   authDomain: "product-hunt-ec576.firebaseapp.com",
   projectId: "product-hunt-ec576",

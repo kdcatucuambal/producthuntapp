@@ -1,12 +1,14 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage"
 import { ILogin, INewAccount } from "../models/app.interfaces";
 import firebaseConfig from "./config";
 
 class Firebase {
-  private auth: app.auth.Auth = null;
+  private readonly auth: app.auth.Auth = null;
   public db: app.firestore.Firestore;
+  public storage: app.storage.Storage;
 
   constructor() {
     if (!app.apps.length) {
@@ -14,9 +16,10 @@ class Firebase {
     }
     this.auth = app.auth();
     this.db = app.firestore();
+    this.storage = app.storage();
   }
 
-  //regiser user
+  // register user
   async register(user: INewAccount) {
     const newUser = await this.auth.createUserWithEmailAndPassword(
       user.email,
@@ -27,7 +30,7 @@ class Firebase {
     });
   }
 
-  //init sesion
+  //init session
   async login(credentials: ILogin) {
     const { email, password } = credentials;
     const response = await this.auth.signInWithEmailAndPassword(
@@ -37,7 +40,7 @@ class Firebase {
     return response;
   }
 
-  //close sesion
+  //close session
   async logout() {
     await this.auth.signOut();
   }
