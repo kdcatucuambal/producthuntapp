@@ -69,7 +69,7 @@ const Header = () => {
                   margin-right: 2rem;
                 `}
               >
-                Hola {auth.displayName}
+                Hello {auth.displayName}
               </p>
               <Button
                 type="button"

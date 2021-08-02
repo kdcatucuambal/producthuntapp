@@ -67,7 +67,6 @@ const Layout = (props: any) => {
                 `}
             ></Global>
             <Head>
-                <html lang="es"></html>
                 <title>ProductHunt App</title>
                 <link
                     rel="stylesheet"
