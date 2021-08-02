@@ -55,11 +55,12 @@ const NewProduct = () => {
             image: urlImage,
             likes: 0,
             comments: [],
-            created: Date.now()
+            created: Date.now(),
         }
 
         //insert product
         await firebase.db.collection("products").add(product);
+        await router.push('/');
     }
 
     // @ts-ignore

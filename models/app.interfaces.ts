@@ -19,6 +19,7 @@ export interface IProduct extends INewProduct {
   likes: 0;
   comments: string[];
   created: number;
+  id?: string
 }
 
 export interface ILogin {
