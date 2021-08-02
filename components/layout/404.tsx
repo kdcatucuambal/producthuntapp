@@ -7,7 +7,7 @@ const Error404 = () => {
         <h1 css={css`
           margin-top: 5rem;
           text-align: center;
-        `}>Product not found!</h1>
+        `}>Error to render this page</h1>
 
     );
 };
