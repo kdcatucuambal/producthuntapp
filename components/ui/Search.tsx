@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import {css} from "@emotion/react";
+import React, {useState} from "react";
+import Router from "next/router";
 
 const InputText = styled.input`
   border: 1px solid var(--gray3);
@@ -20,22 +22,43 @@ const InputSubmit = styled.button`
   background-color: white;
   border: none;
   text-indent: -9999px;
+
   &:hover {
     cursor: pointer;
   }
 `;
 
+
 const Search = () => {
-  return (
-    <form
-      css={css`
-        position: relative;
-      `}
-    >
-      <InputText type="text" placeholder="Search products ..." />
-      <InputSubmit type="submit">Search</InputSubmit>
-    </form>
-  );
+    const [search, setSearch] = useState('');
+    const searchProduct = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (search.trim() === "") return;
+        //redirect /search
+        Router.push({
+            pathname: '/search',
+            query: {"q": search}
+        })
+
+    }
+
+    function searchProduct2(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        console.log('searching', search);
+        console.log(this);
+    }
+
+    return (
+        <form onSubmit={searchProduct}
+              css={css`
+                position: relative;
+              `}
+        >
+            <InputText type="text" placeholder="Search products ..." onChange={e => setSearch(e.target.value)}/>
+            <InputSubmit type="submit">Search</InputSubmit>
+        </form>
+    );
 };
 
 export default Search;

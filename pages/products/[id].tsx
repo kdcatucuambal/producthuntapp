@@ -97,7 +97,8 @@ const Product = () => {
     }
 
     const isCreator = (id: string) => {
-        if (product.creator.id === id) {
+        if (!auth) return false;
+        if (auth.uid === id) {
             return true;
         }
         return false;
@@ -123,6 +124,29 @@ const Product = () => {
             comments: newComments
         })
         setConsultDB(true); //consult there is a comment
+    }
+
+    //function for check product owner
+    const deleted = () => {
+        if (!auth) return false;
+        if (product.creator.id === auth.uid) {
+            return true;
+        }
+    }
+
+    //delete a product
+    const deleteProduct = async () => {
+        if (!auth) return router.push('/login');
+        if (product.creator.id !== auth.uid) {
+            return router.push("/");
+        }
+
+        try {
+            await firebase.db.collection('products').doc(productId.toString()).delete();
+            await router.push("/");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -178,6 +202,7 @@ const Product = () => {
                                 </div>
                             </aside>
                         </ProductContainer>
+                        {deleted() && <Button onClick={deleteProduct}>Delete product</Button>}
                     </div>
                 )}
             </>
